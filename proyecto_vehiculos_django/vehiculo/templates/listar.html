@@ -1,0 +1,54 @@
+{% extends 'layout.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<section class="container mt-5">
+    {% bootstrap_messages %}
+    <h2>Listado de Vehículos</h2>
+     <!-- {# Display django.contrib.messages as Bootstrap alerts #} -->
+
+
+    {% if vehiculos %}
+    <!-- Tabla de vehículos -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Marca</th>
+                <th scope="col">Modelo</th>
+                <th scope="col">Categoría</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Condición de Precio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehiculo in vehiculos %}
+            <tr>
+                <td>{{ vehiculo.marca }}</td>
+                <td>{{ vehiculo.modelo }}</td>
+                <td>{{ vehiculo.categoria }}</td>
+                <td>${{ vehiculo.precio }}</td>
+                <td>{{ vehiculo.condicion_precio }}</td>
+                <td>
+                    <!-- Botones de acción para editar y eliminar -->
+                    <a class="btn" href="{% url 'editar_vehiculo' vehiculo_id=vehiculo.id %}" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+                        <i class="fa fa-edit text-primary"></i>
+                    </a>
+                    <a class="btn" href="{% url 'eliminar_vehiculo' vehiculo_id=vehiculo.id %}" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+                        <i class="fa fa-trash text-danger"></i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No hay vehículos disponibles</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No hay vehículos disponibles</p>
+    {% endif %}
+</section>
+{% endblock %}
+

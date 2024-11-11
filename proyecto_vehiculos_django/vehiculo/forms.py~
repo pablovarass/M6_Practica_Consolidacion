@@ -1,9 +1,5 @@
-from django.contrib import admin
-from .models import Vehiculo
 from django import forms
-
-
-admin.site.register(Vehiculo)
+from .models import Vehiculo
 
 class VehiculoForm(forms.ModelForm):
     class Meta:

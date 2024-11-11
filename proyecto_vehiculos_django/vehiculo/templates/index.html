@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% load bootstrap5 %}
+
+{% block content %}
+<section class="container mt-5 text-center">
+   
+    <!-- Muestra los mensajes de Bootstrap -->
+    {% if messages %}
+        <div class="container mt-3">
+            {% bootstrap_messages %}
+        </div>
+    {% endif %}
+     <h1>Catálogo de Vehículos</h1>
+    
+</section>
+{% endblock %}
+
